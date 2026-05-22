@@ -53,7 +53,7 @@ The project is currently tested in a home lab environment using:
 - PostgreSQL + pgvector + PostGIS.
 
 ## Repository structure
-
+```
 ai-dacha/
 ├── README.md
 ├── docker-compose.yml
@@ -65,7 +65,7 @@ ai-dacha/
 │   └── requirements/
 ├── examples/
 └── screenshots/
-
+```
 Why PostgreSQL
 
 PostgreSQL was intentionally selected because it allows combining:

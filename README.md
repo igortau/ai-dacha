@@ -186,4 +186,5 @@ The project is under active development and is intended to demonstrate:
 ## Author
 
 Igor Polovitski
+
 System Analyst / AI & LLM enthusiast

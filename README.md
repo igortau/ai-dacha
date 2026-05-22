@@ -67,25 +67,6 @@ ai-dacha/
 ├── examples/
 └── screenshots/
 
-## High-level architecture
-
-```mermaid
-flowchart TD
-    User[User / Mobile App] --> Frontend[Frontend or Mobile UI]
-    Frontend --> API[FastAPI Backend]
-    API --> DB[PostgreSQL]
-    DB --> PGVector[pgvector]
-    DB --> PostGIS[PostGIS]
-    API --> Ollama[Ollama LLM Service]
-    PDF[PDF Documents] --> OCR[OCR Worker]
-    OCR --> Chunker[Document Chunking]
-    Chunker --> Embedder[Embedding Model]
-    Embedder --> PGVector
-    API --> RAG[RAG Retrieval]
-    RAG --> PGVector
-    RAG --> Ollama
-```
-
 Why PostgreSQL
 
 PostgreSQL was intentionally selected because it allows combining:
@@ -207,14 +188,6 @@ The project is under active development and is intended to demonstrate:
 
 ## Roadmap
 
-- [ ] Add real backend source code
-- [ ] Add OpenAPI specification
-- [ ] Add database migration scripts
-- [ ] Add mobile client source code
-- [ ] Add screenshots
-- [ ] Add demo data
-- [ ] Add deployment guide
-- [ ] Add automated tests
 
 ## Author
 

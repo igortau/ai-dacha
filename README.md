@@ -1,27 +1,58 @@
 # AI Dacha
 
-**AI Dacha** is an experimental AI-assisted garden management platform.
+AI Dacha is a personal experimental project focused on combining AI/LLM technologies with geospatial garden management and document-based knowledge retrieval.
 
-The project combines document processing, RAG over gardening books, plant cataloging, geospatial data storage, and a mobile map interface.
+Initially, the project started as a local RAG/LLM laboratory for experimenting with:
 
-The goal of the project is to demonstrate how AI/LLM can be used not only as a chatbot, but as part of a real applied information system.
+- PostgreSQL + pgvector;
+- local LLM deployment with Ollama;
+- PDF ingestion pipelines;
+- semantic search;
+- OCR processing;
+- PostGIS geospatial storage.
 
-## Project goals
+Over time, the project evolved into a prototype of an AI-assisted garden management system.
 
-AI Dacha is designed to help manage a garden plot and related knowledge:
+## Main ideas behind the project
 
-- store plants and their locations on a map;
-- process PDF books and reference materials;
-- split documents into chunks;
-- generate embeddings for semantic search;
-- store vectors in PostgreSQL with pgvector;
-- use PostGIS for geospatial objects;
-- query local LLM models through Ollama;
-- provide API endpoints for frontend/mobile clients.
+The project explores how AI can be integrated into a real information system instead of being used only as a standalone chatbot.
 
-## MVP scope
+Current experiments include:
 
-This repository contains a minimal public MVP structure:
+- storing plants and their locations on a map;
+- processing gardening books and reference PDFs;
+- splitting documents into chunks;
+- generating embeddings for semantic search;
+- storing vectors in PostgreSQL with pgvector;
+- using PostGIS for geospatial objects;
+- querying local LLM models through Ollama;
+- building API endpoints for frontend/mobile clients.
+
+## Current state
+
+Current MVP includes:
+
+- document upload experiments;
+- chunk storage in PostgreSQL;
+- pgvector semantic search;
+- local Ollama integration;
+- geospatial storage for plants;
+- simple mobile map prototype;
+- architecture and data model documentation.
+
+The project is still evolving and many parts are experimental.
+
+## Tested environment
+
+The project is currently tested in a home lab environment using:
+
+- QNAP TS-673A NAS;
+- NVIDIA RTX 3090;
+- Docker / Portainer;
+- Ollama local inference;
+- PostgreSQL + pgvector + PostGIS.
+
+## Repository structure
 
 ```text
 ai-dacha/
@@ -30,24 +61,14 @@ ai-dacha/
 ├── .env.example
 ├── docs/
 │   ├── architecture/
-│   │   ├── architecture.md
-│   │   └── architecture.mmd
 │   ├── api/
-│   │   └── api-examples.md
 │   ├── database/
-│   │   ├── er-diagram.md
-│   │   └── er-diagram.mmd
 │   └── requirements/
-│       └── mvp-requirements.md
 ├── examples/
-│   └── curl-examples.sh
 └── screenshots/
-    └── README.md
-```
 
 ## High-level architecture
 
-```mermaid
 flowchart TD
     User[User / Mobile App] --> Frontend[Frontend or Mobile UI]
     Frontend --> API[FastAPI Backend]
@@ -57,16 +78,28 @@ flowchart TD
     DB --> PostGIS[PostGIS]
 
     API --> Ollama[Ollama LLM Service]
-    API --> RAG[RAG Service]
 
     PDF[PDF Documents] --> OCR[OCR Worker]
     OCR --> Chunker[Document Chunking]
     Chunker --> Embedder[Embedding Model]
     Embedder --> PGVector
 
+    API --> RAG[RAG Retrieval]
     RAG --> PGVector
     RAG --> Ollama
 ```
+
+Why PostgreSQL
+
+PostgreSQL was intentionally selected because it allows combining:
+
+relational data;
+vector search with pgvector;
+geospatial data with PostGIS;
+
+inside a single database engine.
+
+This significantly simplifies the architecture for experimental AI systems.
 
 ## Technology stack
 
@@ -77,7 +110,7 @@ flowchart TD
 | Vector search | pgvector |
 | Geospatial data | PostGIS |
 | LLM runtime | Ollama |
-| Embeddings | local embedding model, for example `nomic-embed-text` |
+| Embeddings | local embedding model, `nomic-embed-text` |
 | OCR / PDF processing | OCR worker service |
 | Containerization | Docker / Docker Compose |
 | Mobile prototype | Android / map interface |
@@ -165,8 +198,6 @@ Recommended screenshots:
 - AI answer from local LLM.
 
 ## Status
-
-This is a portfolio-oriented MVP repository.
 
 The project is under active development and is intended to demonstrate:
 

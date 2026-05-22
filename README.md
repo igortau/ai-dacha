@@ -73,18 +73,14 @@ ai-dacha/
 flowchart TD
     User[User / Mobile App] --> Frontend[Frontend or Mobile UI]
     Frontend --> API[FastAPI Backend]
-
-    API --> DB[(PostgreSQL)]
+    API --> DB[PostgreSQL]
     DB --> PGVector[pgvector]
     DB --> PostGIS[PostGIS]
-
     API --> Ollama[Ollama LLM Service]
-
     PDF[PDF Documents] --> OCR[OCR Worker]
     OCR --> Chunker[Document Chunking]
     Chunker --> Embedder[Embedding Model]
     Embedder --> PGVector
-
     API --> RAG[RAG Retrieval]
     RAG --> PGVector
     RAG --> Ollama

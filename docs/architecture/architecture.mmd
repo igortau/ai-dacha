@@ -1,0 +1,18 @@
+flowchart TD
+    User[User / Mobile App] --> Frontend[Frontend or Mobile UI]
+    Frontend --> API[FastAPI Backend]
+
+    API --> DB[(PostgreSQL)]
+    DB --> PGVector[pgvector]
+    DB --> PostGIS[PostGIS]
+
+    API --> Ollama[Ollama LLM Service]
+    API --> RAG[RAG Service]
+
+    PDF[PDF Documents] --> OCR[OCR Worker]
+    OCR --> Chunker[Document Chunking]
+    Chunker --> Embedder[Embedding Model]
+    Embedder --> PGVector
+
+    RAG --> PGVector
+    RAG --> Ollama

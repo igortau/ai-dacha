@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: ai-dacha-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-aidacha}
+      POSTGRES_USER: ${POSTGRES_USER:-aidacha_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ai_dacha_postgres_data:/var/lib/postgresql/data
+    # In a production setup, install/enable pgvector and PostGIS explicitly
+    # or use a custom PostgreSQL image.
+
+  api:
+    image: ai-dacha-api:latest
+    container_name: ai-dacha-api
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "${API_PORT:-8000}:8000"
+    depends_on:
+      - postgres
+      - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ai-dacha-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ai_dacha_ollama_data:/root/.ollama
+
+  ocr-worker:
+    image: ai-dacha-ocr-worker:latest
+    container_name: ai-dacha-ocr-worker
+    restart: unless-stopped
+    build:
+      context: ./ocr-worker
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+volumes:
+  ai_dacha_postgres_data:
+  ai_dacha_ollama_data:

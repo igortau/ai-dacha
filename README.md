@@ -79,7 +79,7 @@ inside a single database engine.
 This significantly simplifies the architecture for experimental AI systems.
 
 Technology stack
-
+```
 Backend API - FastAPI 
 Database - PostgreSQL 
 Vector search - pgvector 
@@ -89,10 +89,10 @@ Embeddings - local embedding model
 OCR / PDF processing - OCR worker service 
 Containerization - Docker / Docker Compose 
 Mobile prototype - Android / map interface 
+```
 
 Core AI pipeline
-
-
+```
 PDF document
   ↓
 OCR / text extraction
@@ -110,7 +110,7 @@ Semantic search
 Context assembly
   ↓
 LLM response generation
-
+```
 
 ## Example use cases
 

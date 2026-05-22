@@ -69,24 +69,25 @@ ai-dacha/
 
 ## High-level architecture
 
+```mermaid
 flowchart TD
-User[User / Mobile App] --> Frontend[Frontend or Mobile UI]
-Frontend --> API[FastAPI Backend]
+    User[User / Mobile App] --> Frontend[Frontend or Mobile UI]
+    Frontend --> API[FastAPI Backend]
 
-API --> DB[(PostgreSQL)]
-DB --> PGVector[pgvector]
-DB --> PostGIS[PostGIS]
+    API --> DB[(PostgreSQL)]
+    DB --> PGVector[pgvector]
+    DB --> PostGIS[PostGIS]
 
-API --> Ollama[Ollama LLM Service]
+    API --> Ollama[Ollama LLM Service]
 
-PDF[PDF Documents] --> OCR[OCR Worker]
-OCR --> Chunker[Document Chunking]
-Chunker --> Embedder[Embedding Model]
-Embedder --> PGVector
+    PDF[PDF Documents] --> OCR[OCR Worker]
+    OCR --> Chunker[Document Chunking]
+    Chunker --> Embedder[Embedding Model]
+    Embedder --> PGVector
 
-API --> RAG[RAG Retrieval]
-RAG --> PGVector
-RAG --> Ollama
+    API --> RAG[RAG Retrieval]
+    RAG --> PGVector
+    RAG --> Ollama
 ```
 
 Why PostgreSQL

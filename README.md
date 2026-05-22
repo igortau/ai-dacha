@@ -164,16 +164,13 @@ See [`docs/database/er-diagram.md`](docs/database/er-diagram.md).
 
 ## Screenshots
 
-Screenshots should be placed in [`screenshots/`](screenshots/).
+### Swagger / OpenAPI
 
-Recommended screenshots:
+![Swagger API](screenshots/openapi_swagger.png)
 
-- mobile map with plant marker;
-- Swagger / OpenAPI page;
-- database table in DBeaver;
-- document chunk stored in DB;
-- vector column example;
-- AI answer from local LLM.
+### Mobile map prototype
+
+![Mobile Map](screenshots/interface.png)
 
 ## Status
 

@@ -1,8 +1,5 @@
 # Screenshots
 
-Place project screenshots in this folder.
-
-Recommended screenshots for portfolio:
 
 1. `mobile-map.png` — mobile map with plant marker.
 2. `swagger-api.png` — FastAPI Swagger / OpenAPI page.

@@ -54,7 +54,6 @@ The project is currently tested in a home lab environment using:
 
 ## Repository structure
 
-```text
 ai-dacha/
 ├── README.md
 ├── docker-compose.yml
@@ -79,23 +78,21 @@ inside a single database engine.
 
 This significantly simplifies the architecture for experimental AI systems.
 
-## Technology stack
+Technology stack
 
-| Area | Technology |
-|---|---|
-| Backend API | FastAPI |
-| Database | PostgreSQL |
-| Vector search | pgvector |
-| Geospatial data | PostGIS |
-| LLM runtime | Ollama |
-| Embeddings | local embedding model, `nomic-embed-text` |
-| OCR / PDF processing | OCR worker service |
-| Containerization | Docker / Docker Compose |
-| Mobile prototype | Android / map interface |
+Backend API - FastAPI 
+Database - PostgreSQL 
+Vector search - pgvector 
+Geospatial data - PostGIS 
+LLM runtime - Ollama 
+Embeddings - local embedding model
+OCR / PDF processing - OCR worker service 
+Containerization - Docker / Docker Compose 
+Mobile prototype - Android / map interface 
 
-## Core AI pipeline
+Core AI pipeline
 
-```text
+
 PDF document
   ↓
 OCR / text extraction
@@ -113,7 +110,7 @@ Semantic search
 Context assembly
   ↓
 LLM response generation
-```
+
 
 ## Example use cases
 

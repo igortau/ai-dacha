@@ -1,34 +1,56 @@
 # AI Dacha
 
-AI-assisted garden management platform with:
+AI-assisted garden management platform focused on combining local LLMs, geospatial data, document ingestion and semantic search.
 
-- local LLM integration (Ollama)
-- RAG over gardening books
-- PostgreSQL + pgvector
-- PostGIS geospatial storage
-- mobile map prototype
-- document ingestion pipeline
+The project combines:
 
-## Main ideas behind the project
+- local LLM integration with Ollama;
+- RAG over gardening books and reference materials;
+- PostgreSQL + pgvector semantic search;
+- PostGIS geospatial storage;
+- mobile map prototype;
+- document ingestion and OCR pipelines.
+
+---
+
+## Project overview
+
+AI Dacha started as a personal experimental project for exploring local AI/LLM infrastructure and RAG pipelines.
+
+Initially, the project focused on:
+
+- PostgreSQL + pgvector;
+- local LLM deployment;
+- PDF ingestion;
+- semantic search;
+- OCR processing.
+
+Later, the project evolved into a prototype of an AI-assisted garden management system with geospatial storage and autonomous catalog enrichment agents.
 
 The project explores how AI can be integrated into a real information system instead of being used only as a standalone chatbot.
+
+---
+
+## Main project areas
 
 Current experiments include:
 
 - storing plants and their locations on a map;
 - processing gardening books and reference PDFs;
-- splitting documents into chunks;
-- generating embeddings for semantic search;
-- storing vectors in PostgreSQL with pgvector;
-- using PostGIS for geospatial objects;
+- document chunking and embedding generation;
+- semantic search over gardening knowledge bases;
+- geospatial storage using PostGIS;
 - querying local LLM models through Ollama;
-- building API endpoints for frontend/mobile clients.
+- API-oriented architecture for frontend/mobile clients;
+- autonomous AI agents for catalog ingestion and enrichment.
+
+---
 
 ## Autonomous AI Agents
 
 The project also experiments with autonomous AI agents responsible for external knowledge ingestion and catalog enrichment.
 
-One of the current experimental agents is a Rose Catalog Agent which:
+One of the current experimental agents is a **Rose Catalog Agent** which:
 
 - crawls public nursery websites;
 - detects rose-related pages;
@@ -46,19 +68,24 @@ The enrichment pipeline combines:
 
 The long-term goal is building AI-assisted structured gardening knowledge bases suitable for semantic search and future RAG workflows.
 
+---
+
 ## Current state
 
 Current MVP includes:
 
-- document upload experiments;
-- chunk storage in PostgreSQL;
+- PDF ingestion experiments;
+- document chunk storage;
 - pgvector semantic search;
 - local Ollama integration;
-- geospatial storage for plants;
-- simple mobile map prototype;
-- architecture and data model documentation.
+- geospatial plant storage;
+- mobile map prototype;
+- architecture and data model documentation;
+- Swagger / OpenAPI documentation.
 
-The project is still evolving and many parts are experimental.
+The project is under active development and many components are still experimental.
+
+---
 
 ## Tested environment
 
@@ -70,8 +97,11 @@ The project is currently tested in a home lab environment using:
 - Ollama local inference;
 - PostgreSQL + pgvector + PostGIS.
 
+---
+
 ## Repository structure
-```
+
+```text
 ai-dacha/
 ├── README.md
 ├── docker-compose.yml
@@ -86,53 +116,64 @@ ai-dacha/
 ├── examples/
 └── screenshots/
 ```
-Why PostgreSQL
+
+---
+
+## Why PostgreSQL
 
 PostgreSQL was intentionally selected because it allows combining:
 
-relational data;
-vector search with pgvector;
-geospatial data with PostGIS;
+- relational data;
+- vector search with pgvector;
+- geospatial data with PostGIS;
 
 inside a single database engine.
 
-This significantly simplifies the architecture for experimental AI systems.
+This significantly simplifies the architecture of experimental AI systems and reduces infrastructure complexity.
 
-Technology stack
-```
-Backend API - FastAPI 
-Database - PostgreSQL 
-Vector search - pgvector 
-Geospatial data - PostGIS 
-LLM runtime - Ollama 
-Embeddings - local embedding model
-OCR / PDF processing - OCR worker service 
-Containerization - Docker / Docker Compose 
-Mobile prototype - Android / map interface 
-```
+---
 
-Core AI pipeline
-```
+## Technology stack
+
+| Area | Technology |
+|---|---|
+| Backend API | FastAPI |
+| Database | PostgreSQL |
+| Vector search | pgvector |
+| Geospatial data | PostGIS |
+| LLM runtime | Ollama |
+| Embeddings | local embedding model |
+| OCR / PDF processing | OCR worker service |
+| Containerization | Docker / Docker Compose |
+| Mobile prototype | Android / map interface |
+
+---
+
+## Core AI pipeline
+
+```text
 PDF document
-  ↓
+    ↓
 OCR / text extraction
-  ↓
+    ↓
 Text normalization
-  ↓
+    ↓
 Chunking
-  ↓
+    ↓
 Embedding generation
-  ↓
+    ↓
 Storage in PostgreSQL + pgvector
-  ↓
+    ↓
 Semantic search
-  ↓
+    ↓
 Context assembly
-  ↓
+    ↓
 LLM response generation
 ```
 
-## Autonomous Catalog Ingestion Pipeline
+---
+
+## Autonomous catalog ingestion pipeline
 
 ```text
 Internet nursery websites
@@ -152,52 +193,71 @@ Structured PostgreSQL catalog
 Semantic / AI-ready knowledge base
 ```
 
+---
+
 ## Example use cases
 
 ### 1. Ask questions about gardening books
 
-User uploads gardening books or reference PDFs.  
-The system extracts text, creates chunks, generates embeddings, and allows semantic search over the document base.
+Users can upload gardening books or reference PDFs.
+
+The system:
+
+1. extracts text;
+2. creates chunks;
+3. generates embeddings;
+4. stores vectors in PostgreSQL;
+5. retrieves relevant chunks during semantic search.
 
 Example:
 
 > "Какие растения лучше посадить в полутени рядом с забором?"
 
-The system retrieves relevant chunks from the document base and sends them as context to the LLM.
+Relevant chunks are retrieved from the document base and sent to the local LLM as context.
+
+---
 
 ### 2. Store plants on a garden map
 
-The user can add a plant to a map:
+The system can store:
 
 - plant name;
 - plant type;
 - coordinates;
-- comment;
+- comments;
 - planting date;
 - custom notes.
 
-The geometry is stored in PostGIS.
+Geometry is stored using PostGIS.
 
-### 3. Combine plant data and AI recommendations
+---
 
-The system can combine:
+### 3. Combine AI recommendations with geospatial data
 
-- plant location;
-- soil or area notes;
-- documents from the knowledge base;
+The project also explores combining:
+
+- plant locations;
+- semantic search;
+- document knowledge;
 - LLM reasoning.
 
 Example:
 
 > "Что можно посадить рядом с розой у забора?"
 
+---
+
 ## API examples
 
 See [`docs/api/api-examples.md`](docs/api/api-examples.md).
 
+---
+
 ## Database model
 
 See [`docs/database/er-diagram.md`](docs/database/er-diagram.md).
+
+---
 
 ## Screenshots
 
@@ -209,22 +269,37 @@ See [`docs/database/er-diagram.md`](docs/database/er-diagram.md).
 
 ![Mobile Map](screenshots/interface.png)
 
+---
+
+## Planned features
+
+- semantic search over structured plant knowledge bases;
+- OCR improvements for scanned gardening books;
+- metadata extraction and normalization;
+- geospatial filtering;
+- AI-assisted planting recommendations;
+- expanded autonomous ingestion agents;
+- knowledge graph experiments.
+
+---
+
 ## Status
 
-The project is under active development and is intended to demonstrate:
+The repository is intended as a technical portfolio project demonstrating:
 
-- system analysis skills;
-- data modeling;
+- system analysis;
 - AI/LLM integration;
-- document processing pipeline;
-- PostgreSQL + pgvector + PostGIS usage;
-- API-oriented architecture.
+- RAG pipelines;
+- PostgreSQL + pgvector usage;
+- PostGIS geospatial modeling;
+- API-oriented architecture;
+- document ingestion workflows;
+- autonomous AI agent concepts.
 
-## Roadmap
-
+---
 
 ## Author
 
 Igor Polovitski
 
-System Analyst focused on AI/LLM systems, data pipelines and knowledge ingestion architectures.
+System Analyst focused on AI/LLM systems, data pipelines, semantic search and knowledge ingestion architectures.

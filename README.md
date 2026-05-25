@@ -1,17 +1,13 @@
 # AI Dacha
 
-AI Dacha is a personal experimental project focused on combining AI/LLM technologies with geospatial garden management and document-based knowledge retrieval.
+AI-assisted garden management platform with:
 
-Initially, the project started as a local RAG/LLM laboratory for experimenting with:
-
-- PostgreSQL + pgvector;
-- local LLM deployment with Ollama;
-- PDF ingestion pipelines;
-- semantic search;
-- OCR processing;
-- PostGIS geospatial storage.
-
-Over time, the project evolved into a prototype of an AI-assisted garden management system.
+- local LLM integration (Ollama)
+- RAG over gardening books
+- PostgreSQL + pgvector
+- PostGIS geospatial storage
+- mobile map prototype
+- document ingestion pipeline
 
 ## Main ideas behind the project
 

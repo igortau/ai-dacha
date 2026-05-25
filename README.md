@@ -270,6 +270,20 @@ See [`docs/database/er-diagram.md`](docs/database/er-diagram.md).
 ![Mobile Map](screenshots/interface.png)
 
 ---
+## Database schemas
+
+### Garden geospatial model
+
+![Garden Schema](screenshots/garden-schema.png)
+
+### Plant knowledge catalog
+
+![Catalog Schema](screenshots/catalog-schema.png)
+
+### AI / RAG schema
+
+![AI Schema](screenshots/ai-schema.png)
+---
 
 ## Planned features
 

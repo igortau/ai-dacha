@@ -28,6 +28,28 @@ Current experiments include:
 - querying local LLM models through Ollama;
 - building API endpoints for frontend/mobile clients.
 
+## Autonomous AI Agents
+
+The project also experiments with autonomous AI agents responsible for external knowledge ingestion and catalog enrichment.
+
+One of the current experimental agents is a Rose Catalog Agent which:
+
+- crawls public nursery websites;
+- detects rose-related pages;
+- extracts rose product cards;
+- normalizes cultivar names;
+- enriches metadata using a local LLM (Ollama);
+- stores structured catalog data in PostgreSQL.
+
+The enrichment pipeline combines:
+
+- rule-based extraction;
+- normalization logic;
+- local LLM inference;
+- structured JSON generation.
+
+The long-term goal is building AI-assisted structured gardening knowledge bases suitable for semantic search and future RAG workflows.
+
 ## Current state
 
 Current MVP includes:
@@ -58,6 +80,8 @@ ai-dacha/
 ├── README.md
 ├── docker-compose.yml
 ├── .env.example
+├── agents/
+│   └── rose-agent/
 ├── docs/
 │   ├── architecture/
 │   ├── api/
@@ -110,6 +134,26 @@ Semantic search
 Context assembly
   ↓
 LLM response generation
+```
+
+## Autonomous Catalog Ingestion Pipeline
+
+```text
+Internet nursery websites
+    ↓
+Crawler agent
+    ↓
+Page classification
+    ↓
+Product extraction
+    ↓
+Normalization
+    ↓
+LLM enrichment (Ollama)
+    ↓
+Structured PostgreSQL catalog
+    ↓
+Semantic / AI-ready knowledge base
 ```
 
 ## Example use cases
@@ -187,4 +231,4 @@ The project is under active development and is intended to demonstrate:
 
 Igor Polovitski
 
-System Analyst / AI & LLM enthusiast
+System Analyst focused on AI/LLM systems, data pipelines and knowledge ingestion architectures.

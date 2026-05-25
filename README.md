@@ -283,6 +283,12 @@ See [`docs/database/er-diagram.md`](docs/database/er-diagram.md).
 ### AI / RAG schema
 
 ![AI Schema](screenshots/ai-schema.png)
+
+### Document chunks and embeddings
+
+Example of stored document chunks and vector embeddings inside PostgreSQL.
+
+![Document Chunks](screenshots/document-chunks-embedding.png)
 ---
 
 ## Planned features

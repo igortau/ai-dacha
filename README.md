@@ -198,6 +198,31 @@ The API response includes metadata showing which agent processed the request:
 
 ![Garden Agent](screenshots/garden-agent.png)
 
+
+### Example Request
+
+```http
+POST /garden/ask
+```
+
+```json
+{
+  "question": "Нужно ли сегодня поливать розу у забора?"
+}
+```
+
+### Example Response
+
+```json
+{
+  "agent_type": "garden_weather_agent",
+  "matched_plants_count": 1,
+  "plants_sent_to_llm": 1,
+  "answer": "..."
+}
+```
+
+
 This demonstrates a domain-specific AI agent that works not only with text documents, but also with structured PostgreSQL data, geospatial garden data and live weather information.
 
 ---

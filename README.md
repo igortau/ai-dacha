@@ -222,6 +222,9 @@ POST /garden/ask
 }
 ```
 
+## Agent Documentation
+
+- [Garden Weather Agent](docs/api/garden-weather-agent.md)
 
 This demonstrates a domain-specific AI agent that works not only with text documents, but also with structured PostgreSQL data, geospatial garden data and live weather information.
 

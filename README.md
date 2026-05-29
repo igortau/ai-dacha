@@ -132,6 +132,10 @@ The agent uses:
 * 24-hour weather forecast;
 * local LLM through Ollama.
 
+### Weather Agent Example
+
+![Weather Agent](screenshots/weather-status.png)
+
 ### Garden Weather Agent
 
 Endpoint:
@@ -190,6 +194,9 @@ The API response includes metadata showing which agent processed the request:
   "forecast_hours_used": 24
 }
 ```
+### Garden Agent Example
+
+![Garden Agent](screenshots/garden-agent.png)
 
 This demonstrates a domain-specific AI agent that works not only with text documents, but also with structured PostgreSQL data, geospatial garden data and live weather information.
 

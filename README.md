@@ -69,6 +69,131 @@ The enrichment pipeline combines:
 The long-term goal is building AI-assisted structured gardening knowledge bases suitable for semantic search and future RAG workflows.
 
 ---
+## Weather and Garden AI Agents
+
+The project now includes experimental AI agents that combine local weather data, forecast data and garden inventory stored in PostgreSQL.
+
+### Weather Data Pipeline
+
+The weather subsystem collects data from two sources:
+
+* Netatmo weather station — local measurements from the garden area;
+* Open-Meteo API — hourly weather forecast.
+
+Collected data is stored in PostgreSQL in a dedicated `weather` schema.
+
+Pipeline:
+
+```text
+Netatmo Weather Station
+        ↓
+netatmo-worker
+        ↓
+PostgreSQL weather.netatmo_current_measurements
+
+Open-Meteo API
+        ↓
+forecast-worker
+        ↓
+PostgreSQL weather.weather_forecast
+```
+
+The stored weather data includes:
+
+* air temperature;
+* humidity;
+* atmospheric pressure;
+* rain;
+* wind speed;
+* wind direction;
+* wind gusts.
+
+### Weather Agent
+
+Endpoint:
+
+```http
+POST /weather/ask
+```
+
+The Weather Agent answers weather-related questions using PostgreSQL data instead of querying the internet directly.
+
+Example questions:
+
+```text
+Нужно ли сегодня поливать розы?
+Будет ли сегодня сильный ветер?
+Какая минимальная температура ожидается ночью?
+```
+
+The agent uses:
+
+* current Netatmo measurements;
+* 24-hour weather forecast;
+* local LLM through Ollama.
+
+### Garden Weather Agent
+
+Endpoint:
+
+```http
+POST /garden/ask
+```
+
+The Garden Weather Agent combines:
+
+* user plants from `garden.user_plants`;
+* plant locations from PostGIS;
+* current weather measurements;
+* hourly weather forecast;
+* local LLM reasoning.
+
+Pipeline:
+
+```text
+User question
+        ↓
+Plant matching
+        ↓
+Selected plant context
+        ↓
+Weather and forecast context
+        ↓
+Ollama LLM
+        ↓
+Garden recommendation
+```
+
+Example question:
+
+```text
+Нужно ли сегодня поливать розу у забора?
+```
+
+Example response logic:
+
+```text
+The agent finds the plant "Роза у забора",
+loads its planting date, notes and location,
+combines this with current humidity, temperature and forecast,
+then generates a plant-specific watering recommendation.
+```
+
+The API response includes metadata showing which agent processed the request:
+
+```json
+{
+  "agent_type": "garden_weather_agent",
+  "matched_plants_count": 1,
+  "plants_sent_to_llm": 1,
+  "current_weather_used": true,
+  "forecast_hours_used": 24
+}
+```
+
+This demonstrates a domain-specific AI agent that works not only with text documents, but also with structured PostgreSQL data, geospatial garden data and live weather information.
+
+---
 
 ## Current state
 
